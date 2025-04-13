@@ -18,8 +18,8 @@ This repository contains various programs developed by the group, covering topic
 
 Stay connected and follow RESMOL_UAH on social media:
 
-[![Twitter](https://img.shields.io/badge/X%20(former%20Twitter)-@RESMOL__UAH-1DA1F2?style=flat&logo=x&logoColor=white)](https://x.com/RESMOL_UAH)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-RESMOL__UAH-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/company/106280048/)
+[Follow us on X 🌐](https://x.com/RESMOL_UAH)  
+[Follow us on LinkedIn 🌐](https://www.linkedin.com/company/106280048/)
 
 
 
