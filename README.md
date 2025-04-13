@@ -1,3 +1,19 @@
-![Logo](./images/logo3.png)
+<p align="center">
+  <img src="./images/logo3.png" alt="RESMOL_UAH Group Logo" width="250"/>
+</p>
+
 # RESMOL_UAH
-Programs by Reactivity and Structure Research Group (RESMOL) of the University of Alcala (UAH)
+
+Official repository of the **RESMOL (Molecular Reactivity and Spectroscopy)** research group at the University of Alcalá.
+
+This repository contains various programs developed by the group, covering topics such as:
+
+- Quantum chemistry and computational methods
+- Modeling of photochemical and mechanochemical processes
+- Molecular dynamics and spectroscopic property calculations
+- Analysis, automation, and scientific visualization scripts
+
+## 📂 Repository structure
+
+Each subfolder contains a program or a set of scripts related to a specific topic or project:
+
