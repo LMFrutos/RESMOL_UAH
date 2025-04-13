@@ -17,3 +17,20 @@ This repository contains various programs developed by the group, covering topic
 
 Each subfolder contains a program or a set of scripts related to a specific topic or project:
 
+
+
+
+
+
+
+
+
+
+## ⚖️ License
+
+This repository is distributed under the **MIT License**, which allows usage, modification, and redistribution, provided that the original authorship is acknowledged.
+
+---
+
+If you use any of these programs, please cite us or link to this repository.  
+Contact: [luisma.frutos@uah.es]
