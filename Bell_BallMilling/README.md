@@ -7,16 +7,22 @@ A program for the determination of the activation energy variation in Ball Milli
 ## Repository Structure
 
 ```
-├── Bell_BallMilling.py   ← Main script
-├── pyproject.toml        ← Package configuration file (for pip installation)
-├── requirements.txt      ← Dependency file for development environment
-├── R_min.txt             ← Starting geometry (local minimum)
-├── R_TS.txt              ← Target geometry (e.g., transition state)
-├── input.txt             ← Input parameters (pressure, resolution, etc.)
+Bell_BallMilling/
+├── Bell_BallMilling.py
+├── compute_W.py
+├── pyproject.toml
+├── requirements.txt
 │
-├── output.txt            ← (Created at runtime) Numerical report
-├── W.mtx                 ← (Created at runtime) W(φ,θ) surface in coordinate format
-└── W_spherical.png       ← (Created at runtime) Graphical visualization of the results
+├── example_files/
+│   ├── input_files/
+│   │   ├── R_min.txt
+│   │   ├── R_TS.txt
+│   │   └── input.txt
+│   ├── output_files/
+│   │   ├── output.txt
+│   │   ├── W.mtx
+│   │   └── W_spherical.png
+│   └── README_example_info.txt
 ```
 
 ## Installation
