@@ -1,151 +1,141 @@
-# Bell-BallMilling-Mechanochemistry
+# Bell-BallMilling 
 
-A Python 3 program to compute the change in activation energy for chemical processes under Ball Milling conditions. The core script, `compute_W.py`, generates the work surface W(φ, θ) for a molecule subjected to external isotropic pressure. NumPy and SciPy are used for vectorized calculations, producing both numerical reports and graphical outputs.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-## Repository Structure
+This program evaluates the work term W(φ,θ) applied to a molecular geometry under external pressure. This calculation is a key component of the Bell model used to understand how external forces can modify reaction energy barriers, particularly in the context of mechanochemistry of ball-milling simulations.
 
-Bell_BallMilling/
-├── Bell_BallMilling.py
-├── compute_W.py
-├── pyproject.toml
-├── requirements.txt
-│
-├── example_files/
-│ ├── input_files/
-│ │ ├── R_min.txt
-│ │ ├── R_TS.txt
-│ │ └── input.txt
-│ ├── output_files/
-│ │ ├── output.txt
-│ │ ├── W.mtx
-│ │ └── W_spherical.png
-│ └── README_example_info.txt
+The script reads two molecular geometries (i.e., a reactant minimum and a transition state), aligns them, and then calculates the work done by an external, directional pressure across a sphere of orientations.
 
-bash
-Copiar
-Editar
+## Features
+
+- **File-based Inputs**: Geometries and simulation parameters are loaded from simple text files, not hard-coded.
+- **Mass-Weighted Alignment**: Removes overall translation and rotation using mass-weighted center of mass and a Kabsch alignment algorithm.
+- **Van der Waals Correction**: Optionally includes atomic van der Waals radii to define the effective molecular surface.
+- **Comprehensive Output**: Generates a summary text file, a full data matrix of the work function, and a 3D spherical plot for easy visualization.
+- **Python Standard Packaging**: Easily installable as a Python package via `pip`.
 
 ## Installation
 
-It is strongly recommended to use a virtual environment (`venv` or similar) to avoid conflicts.
+This project uses modern Python packaging standards. The recommended way to install it is using `pip` in a virtual environment.
 
-### Method 1: Standard Installation (Recommended, CLI support)
+**Prerequisites:**
+- Python 3.8 or newer
+- `pip` and `venv`
 
-```bash
-git clone https://github.com/LMFrutos/RESMOL_UAH.git
-cd RESMOL_UAH/Bell_BallMilling
-python -m venv .venv
-source .venv/bin/activate         # On Windows: .venv\Scripts\activate
-pip install -e .
-This installs the package in editable mode and adds the CLI command bmm-compute.
+### Installation Steps
 
-Method 2: Development Environment
-bash
-Copiar
-Editar
-git clone https://github.com/LMFrutos/RESMOL_UAH.git
-cd RESMOL_UAH/Bell_BallMilling
-python -m venv .venv
-source .venv/bin/activate         # On Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-Quick Start
-Prepare your input files in example_files/input_files/:
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/your-username/Bell_BallMilling.git
+    cd Bell_BallMilling
+    ```
 
-R_min.txt, R_TS.txt, input.txt
-(Check the example files and README_example_info.txt for guidance.)
+2.  **Create and activate a virtual environment:**
+    ```bash
+    # For Unix/macOS
+    python3 -m venv venv
+    source venv/bin/activate
 
-Run the program from the main directory (Bell_BallMilling):
+    # For Windows
+    python -m venv venv
+    .\venv\Scripts\activate
+    ```
 
-If installed with pip (Method 1):
+3.  **Install the package:**
+    The project includes a `Bell_BallMilling.toml` file. For `pip` to recognize it as a standard project definition file, it should be named `pyproject.toml`.
 
-bash
-Copiar
-Editar
-bmm-compute
-If running directly (Method 2):
+    **Rename the file:**
+    ```bash
+    # For Unix/macOS
+    mv Bell_BallMilling.toml pyproject.toml
 
-bash
-Copiar
-Editar
-python compute_W.py
-The results will appear in example_files/output_files/:
+    # For Windows
+    ren Bell_BallMilling.toml pyproject.toml
+    ```
 
-output.txt: numeric report
+    Now, run the installation with `pip`. This command reads the `pyproject.toml` file and automatically installs all required dependencies (`numpy`, `scipy`, `matplotlib`).
 
-W.mtx: raw W(φ, θ) data
+    ```bash
+    pip install .
+    ```
 
-W_spherical.png: 3D and 2D graphical representations
+This will install the project and its dependencies into your virtual environment.
 
-File Formats
-Input files (example_files/input_files/)
-File	Description
-R_min.txt / R_TS.txt	Line 1: N (number of atoms). Lines 2–N+1: Z x y z (atomic number and Cartesian coordinates, in Å).
-input.txt	Line 1: P_ext_GPa (float), external pressure in GPa
-Line 2: ntheta (int), angular resolution
-Line 3: YES or NO (whether to include van der Waals radii)
+## Usage
 
-See example_files/README_example_info.txt for more details and sample values.
+After installation, you can run the calculation script. The program expects three input files to be present in the directory from which you run it.
 
-Output files (example_files/output_files/)
-output.txt: summary (sphere radius, forces, mean delta Ea, min/max W values, etc.)
+1.  **Prepare your input files.**
+    An example set of files is provided in the `example_files/input_files/` directory. Copy them to the root directory of the project to run a test case:
 
-W.mtx: plain text; header with nphi, ntheta, followed by phi theta W(phi,theta) (not Matrix-Market format)
+    ```bash
+    # For Unix/macOS
+    cp example_files/input_files/* .
 
-W_spherical.png: 2D/3D visual representation of W(φ, θ)
+    # For Windows
+    copy example_files\input_files\* .
+    ```
 
-Algorithm Overview
-Loads and validates the input geometry and settings.
+    The required files are:
+    - `R_min.txt` (Initial geometry)
+    - `R_TS.txt` (Transition state geometry)
+    - `input.txt` (Calculation parameters)
 
-Centers geometries using the center of mass and Kabsch rotation.
+2.  **Run the script:**
+    Execute the main Python script from the root directory of the project:
+    ```bash
+    python Bell_BallMilling.py
+    ```
 
-Calculates internal displacements (delta R).
+3.  **Check the results.**
+    The script will generate three output files in the current directory:
+    - `output.txt`: A summary of the input parameters and key results.
+    - `W.mtx`: The complete work function data, with columns for `phi`, `theta`, and `W(phi,theta)`.
+    - `W_spherical.png`: A visual representation of the work function mapped onto a sphere.
 
-Computes the spherical radius from the center, optionally adding van der Waals radii.
+    You can compare your generated files with the reference outputs located in `example_files/output_files/`.
 
-Applies isotropic external force, distributes over atoms.
+## File Formats
 
-Generates a spherical grid (phi, theta) and computes the work W in each direction.
+### Input Files
 
-Saves the results (output.txt, W.mtx, W_spherical.png).
+**`R_min.txt` / `R_TS.txt`**
+-   **Line 1**: `N` (an integer representing the number of atoms).
+-   **Lines 2 to N+1**: `Z x y z` (atomic number and Cartesian coordinates in Ångstroms), with each atom on a new line.
+Use code with caution.
+Markdown
+3
+8 0.000000 0.117300 -0.054400
+1 -0.757200 -0.469200 -0.054400
+1 0.757200 -0.469200 -0.054400
+Generated code
+**`input.txt`**
+-   **Line 1**: External pressure `P_ext` in GPa (float).
+-   **Line 2**: Grid resolution for the `θ` coordinate, `ntheta` (integer). The `φ` grid will be `2 * ntheta`.
+-   **Line 3**: A string `YES` or `NO` to indicate whether to include van der Waals radii in the calculation of the molecular surface.
+Use code with caution.
+1.0
+40
+YES
+Generated code
+### Output Files
 
-Dependencies
-Python >= 3.9
+**`output.txt`**
+A human-readable summary containing the number of atoms, pressure, sphere radius, forces, and the minimum and maximum values of the work term W.
 
-NumPy >= 1.21
+**`W.mtx`**
+A machine-readable matrix file containing the calculated work values. The format is:
+- **Header Lines**: Comments and dimensions.
+- **Data Lines**: `phi  theta  W(phi,theta)`
+  - `phi`: from `0` to `2π`
+  - `theta`: from `0` to `π`
+  - `W`: Work term in kcal/mol
 
-SciPy >= 1.9
+**`W_spherical.png`**
+A PNG image containing a 3D spherical plot and a 2D rectangular plot of W(φ,θ). The color scale (Red to Blue) indicates the work value, where red corresponds to lower energy (stabilizing) and blue corresponds to higher energy (destabilizing).
 
-Matplotlib >= 3.5
+![Example Spherical Plot](example_files/output_files/W_spherical.png)
 
-Dependencies are installed automatically with pip install -e . or pip install -r requirements.txt.
+## License
 
-Example
-A complete example (input and output) is provided in the example_files/ folder.
-Refer to README_example_info.txt in that directory for a detailed explanation of file formats and example contents.
-
-Contributing
-Pull requests and issues are welcome! Please:
-
-Clearly describe changes or bugs.
-
-Include sample files or data if relevant.
-
-Add tests if you implement new features.
-
-Author
-Luis Manuel Frutos
-
-Future improvements
-More robust validation of input files
-
-Additional statistical reporting
-
-Export to standard formats (CSV, JSON)
-
-Automated documentation (Sphinx, MkDocs)
-
-Thank you for using Bell-BallMilling-Mechanochemistry!
-
-yaml
-Copiar
-Editar
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
