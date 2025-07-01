@@ -1,10 +1,9 @@
-Bell-BallMilling-Mechanochemistry
-A Python 3 program to compute the change in activation energy for chemical processes under Ball Milling conditions. The core script, compute_W.py, generates the work surface W(phi, theta) for a molecule subjected to external isotropic pressure. NumPy and SciPy are used for vectorized calculations, producing both numerical reports and graphical outputs.
+# Bell-BallMilling-Mechanochemistry
 
-Repository Structure
-lua
-Copiar
-Editar
+A Python 3 program to compute the change in activation energy for chemical processes under Ball Milling conditions. The core script, `compute_W.py`, generates the work surface W(φ, θ) for a molecule subjected to external isotropic pressure. NumPy and SciPy are used for vectorized calculations, producing both numerical reports and graphical outputs.
+
+## Repository Structure
+
 Bell_BallMilling/
 ├── Bell_BallMilling.py
 ├── compute_W.py
@@ -12,22 +11,27 @@ Bell_BallMilling/
 ├── requirements.txt
 │
 ├── example_files/
-│   ├── input_files/
-│   │   ├── R_min.txt
-│   │   ├── R_TS.txt
-│   │   └── input.txt
-│   ├── output_files/
-│   │   ├── output.txt
-│   │   ├── W.mtx
-│   │   └── W_spherical.png
-│   └── README_example_info.txt
-Installation
-It is strongly recommended to use a virtual environment (venv or similar) to avoid conflicts.
+│ ├── input_files/
+│ │ ├── R_min.txt
+│ │ ├── R_TS.txt
+│ │ └── input.txt
+│ ├── output_files/
+│ │ ├── output.txt
+│ │ ├── W.mtx
+│ │ └── W_spherical.png
+│ └── README_example_info.txt
 
-Method 1: Standard Installation (Recommended, CLI support)
 bash
 Copiar
 Editar
+
+## Installation
+
+It is strongly recommended to use a virtual environment (`venv` or similar) to avoid conflicts.
+
+### Method 1: Standard Installation (Recommended, CLI support)
+
+```bash
 git clone https://github.com/LMFrutos/RESMOL_UAH.git
 cd RESMOL_UAH/Bell_BallMilling
 python -m venv .venv
@@ -68,7 +72,7 @@ The results will appear in example_files/output_files/:
 
 output.txt: numeric report
 
-W.mtx: raw W(phi, theta) data
+W.mtx: raw W(φ, θ) data
 
 W_spherical.png: 3D and 2D graphical representations
 
@@ -87,7 +91,7 @@ output.txt: summary (sphere radius, forces, mean delta Ea, min/max W values, etc
 
 W.mtx: plain text; header with nphi, ntheta, followed by phi theta W(phi,theta) (not Matrix-Market format)
 
-W_spherical.png: 2D/3D visual representation of W(phi, theta)
+W_spherical.png: 2D/3D visual representation of W(φ, θ)
 
 Algorithm Overview
 Loads and validates the input geometry and settings.
@@ -141,3 +145,7 @@ Export to standard formats (CSV, JSON)
 Automated documentation (Sphinx, MkDocs)
 
 Thank you for using Bell-BallMilling-Mechanochemistry!
+
+yaml
+Copiar
+Editar
