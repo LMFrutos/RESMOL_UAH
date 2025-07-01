@@ -7,7 +7,7 @@ A program for the determination of the activation energy variation in Ball Milli
 ## Repository Structure
 
 ```
-├── compute_W.py          ← Main script
+├── Bell_BallMilling.py   ← Main script
 ├── pyproject.toml        ← Package configuration file (for pip installation)
 ├── requirements.txt      ← Dependency file for development environment
 ├── R_min.txt             ← Starting geometry (local minimum)
